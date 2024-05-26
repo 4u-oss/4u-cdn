@@ -3,11 +3,12 @@ FROM amazonlinux:latest
 
 # Initialize
 WORKDIR /home/ec2-user
-RUN git clone https://github.com/4u-oss/4u-cdn.git
-WORKDIR /home/ec2-user/4u-cdn
 RUN yum update -y
 RUN yum upgrade -y
 RUN yum groupinstall -y "Development Tools"
+RUN yum install -y git
+RUN git clone https://github.com/4u-oss/4u-cdn.git
+WORKDIR /home/ec2-user/4u-cdn
 
 # ImageMagick
 RUN yum install -y wget
@@ -20,7 +21,7 @@ ENV CMAKE_PREFIX_PATH=/squashfs-root/usr:${CMAKE_PREFIX_PATH}
 RUN yum install -y cmake
 
 # AWS SDK for C++
-RUN yum install -y libcurl-devel openssl-devel libuuid-devel pulseaudio-libs-devel git
+RUN yum install -y libcurl-devel openssl-devel libuuid-devel pulseaudio-libs-devel
 RUN git clone --recursive https://github.com/aws/aws-sdk-cpp.git
 RUN mkdir build
 WORKDIR /home/ec2-user/4u-cdn/build
