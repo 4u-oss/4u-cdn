@@ -35,8 +35,6 @@ RUN rm -rf build && mkdir build
 WORKDIR /home/ec2-user/4u-cdn/build
 
 # Run main.cpp
-ADD ../CMakeLists.txt /home/ec2-user/4u-cdn/CMakeLists.txt
-ADD ../main.cpp /home/ec2-user/4u-cdn/main.cpp
 RUN cmake ..
 RUN cmake --build .
 CMD [ "./main" ]
