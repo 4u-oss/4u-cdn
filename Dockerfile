@@ -4,6 +4,7 @@ FROM amazonlinux:latest
 # Initialize
 WORKDIR /home/ec2-user
 RUN git clone https://github.com/4u-oss/4u-cdn.git
+WORKDIR /home/ec2-user/4u-cdn
 RUN yum update -y
 RUN yum upgrade -y
 RUN yum groupinstall -y "Development Tools"
@@ -13,6 +14,7 @@ RUN yum install -y wget
 RUN wget https://imagemagick.org/archive/binaries/magick
 RUN chmod +x magick
 RUN ./magick --appimage-extract
+ENV CMAKE_PREFIX_PATH=/squashfs-root/usr:${CMAKE_PREFIX_PATH}
 
 # CMake
 RUN yum install -y cmake
