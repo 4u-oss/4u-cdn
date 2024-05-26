@@ -8,6 +8,6 @@ A simple user-content CDN for 4u services
 - 4gb of memory (or more)
 
 ## Build
-```sh
+```bash
 sudo docker build --tag "4u-cdn" . --memory="2g" --memory-swap="4g"
 ```
