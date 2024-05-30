@@ -3,7 +3,9 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/build/uWebSockets/src",
+                "${workspaceFolder}/**",
+                "/usr/local/Cellar/imagemagick/7.1.1-32/include/ImageMagick-7"
             ],
             "defines": [],
             "macFrameworkPath": [

@@ -1,6 +1,15 @@
 {
   "files.associations": {
     "istream": "cpp",
-    "*.tcc": "cpp"
+    "*.tcc": "cpp",
+    "regex": "cpp",
+    "sstream": "cpp",
+    "filesystem": "cpp",
+    "stdexcept": "cpp",
+    "string": "cpp",
+    "any": "cpp",
+    "algorithm": "cpp",
+    "iostream": "cpp",
+    "ios": "cpp"
   }
 }

@@ -82,15 +82,13 @@ target_link_libraries(uWebSockets uSockets)
 target_include_directories(uWebSockets PUBLIC ${UWEBSOCKETS_DIR})
 
 # AWS SDK
-find_package(AWSSDK COMPONENTS REQUIRED s3)
+# find_package(AWSSDK COMPONENTS REQUIRED s3)
 
 # ImageMagick
-add_definitions(-DMAGICKCORE_QUANTUM_DEPTH=16)
-add_definitions(-DMAGICKCORE_HDRI_ENABLE=0)
 find_path(ImageMagick_INCLUDE_DIR
   NAMES magick/magick-baseconfig.h Magick++.h
   PATHS
-    "/usr/include"
+    "/usr/local/include"
   PATH_SUFFIXES
     ImageMagick ImageMagick-6 ImageMagick-7
   NO_DEFAULT_PATH
@@ -105,7 +103,7 @@ find_library(ImageMagick_Magick++_LIBRARY
     Magick++-7.Q64 Magick++-7.Q32 Magick++-7.Q64HDRI Magick++-7.Q32HDRI
     Magick++-7.Q16 Magick++-7.Q8 Magick++-7.Q16HDRI Magick++-7.Q8HDRI
   PATHS
-    "/usr/lib"
+    "/usr/local/lib"
   DOC "Path to the ImageMagick Magick++ library."
   NO_DEFAULT_PATH
 )
@@ -119,7 +117,7 @@ find_library(ImageMagick_MagickWand_LIBRARY
     MagickWand-7.Q64 MagickWand-7.Q32 MagickWand-7.Q64HDRI MagickWand-7.Q32HDRI
     MagickWand-7.Q16 MagickWand-7.Q8 MagickWand-7.Q16HDRI MagickWand-7.Q8HDRI
   PATHS
-    "/usr/lib"
+    "/usr/local/lib"
   DOC "Path to the ImageMagick MagickWand library."
   NO_DEFAULT_PATH
 )
@@ -133,7 +131,7 @@ find_library(ImageMagick_MagickCore_LIBRARY
     MagickCore-7.Q64 MagickCore-7.Q32 MagickCore-7.Q64HDRI MagickCore-7.Q32HDRI
     MagickCore-7.Q16 MagickCore-7.Q8 MagickCore-7.Q16HDRI MagickCore-7.Q8HDRI
   PATHS
-    "/usr/lib"
+    "/usr/local/lib"
   DOC "Path to the ImageMagick MagickCore library."
   NO_DEFAULT_PATH
 )
