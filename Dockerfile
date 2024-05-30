@@ -7,14 +7,16 @@ RUN yum update -y
 RUN yum upgrade -y
 RUN yum groupinstall -y "Development Tools"
 RUN yum install -y git
-RUN git clone https://github.com/4u-oss/4u-cdn.git
+RUN git clone https://github.com/4u-oss/4u-cdn.git 4u-cdn
 WORKDIR /home/ec2-user/4u-cdn
 
 # ImageMagick
 RUN yum install -y wget
-RUN wget https://imagemagick.org/archive/binaries/magick
-RUN chmod +x magick
-RUN ./magick --appimage-extract
+RUN wget https://imagemagick.org/archive/ImageMagick.tar.gz
+RUN tar xvzf ImageMagick.tar.gz
+RUN ./configure --with-quantum-depth=16
+RUN make
+RUN make install
 
 # CMake
 RUN yum install -y cmake
