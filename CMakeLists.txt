@@ -82,7 +82,7 @@ target_link_libraries(uWebSockets uSockets)
 target_include_directories(uWebSockets PUBLIC ${UWEBSOCKETS_DIR})
 
 # AWS SDK
-# find_package(AWSSDK COMPONENTS REQUIRED s3)
+find_package(AWSSDK COMPONENTS REQUIRED s3)
 
 # ImageMagick
 add_definitions(-DMAGICKCORE_HDRI_ENABLE=0)
