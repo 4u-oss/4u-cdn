@@ -1,3 +1,5 @@
 .DS_Store
 build/
 aws-sdk-cpp/
+certificate.pem
+key.pem

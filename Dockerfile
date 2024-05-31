@@ -9,16 +9,20 @@ RUN yum groupinstall -y "Development Tools"
 RUN yum install -y git
 RUN git clone https://github.com/4u-oss/4u-cdn.git 4u-cdn
 WORKDIR /home/ec2-user/4u-cdn
-ADD /home/ec2-user/4u-cdn/certificate.pem /home/ec2-user/4u-cdn/certificate.pem
-ADD /home/ec2-user/4u-cdn/key.pem /home/ec2-user/4u-cdn/key.pem
+COPY ./certificate.pem /home/ec2-user/4u-cdn/certificate.pem
+COPY ./key.pem /home/ec2-user/4u-cdn/key.pem
+EXPOSE 443
 
 # ImageMagick
 RUN yum install -y wget libjpeg-turbo-devel libpng-devel libtiff-devel libwebp-devel giflib-devel libxml2-devel
 RUN wget https://imagemagick.org/archive/ImageMagick.tar.gz
 RUN tar xvzf ImageMagick.tar.gz
+WORKDIR /home/ec2-user/4u-cdn/ImageMagick-7.1.1-33
+RUN yum install -y gcc g++
 RUN ./configure
 RUN make
 RUN make install
+WORKDIR /home/ec2-user/4u-cdn
 
 # CMake
 RUN yum install -y cmake
