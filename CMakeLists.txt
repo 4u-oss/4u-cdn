@@ -85,7 +85,7 @@ target_include_directories(uWebSockets PUBLIC ${UWEBSOCKETS_DIR})
 find_package(AWSSDK COMPONENTS REQUIRED s3)
 
 # ImageMagick
-add_definitions(-DMAGICKCORE_HDRI_ENABLE=0)
+add_definitions(-DMAGICKCORE_HDRI_ENABLE=1)
 add_definitions(-DMAGICKCORE_QUANTUM_DEPTH=16)
 find_path(ImageMagick_INCLUDE_DIR
   NAMES magick/magick-baseconfig.h Magick++.h
