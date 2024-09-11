@@ -4,13 +4,9 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/build/uWebSockets/src",
-                "${workspaceFolder}/**",
-                "/usr/local/Cellar/imagemagick/7.1.1-32/include/ImageMagick-7"
+                "${workspaceFolder}/**"
             ],
             "defines": [],
-            "macFrameworkPath": [
-                "/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks"
-            ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c17",
             "cppStandard": "c++17",

@@ -91,6 +91,7 @@ find_path(ImageMagick_INCLUDE_DIR
   NAMES magick/magick-baseconfig.h Magick++.h
   PATHS
     "/usr/local/include"
+    "/opt/homebrew/include"
   PATH_SUFFIXES
     ImageMagick ImageMagick-6 ImageMagick-7
   NO_DEFAULT_PATH
@@ -106,6 +107,7 @@ find_library(ImageMagick_Magick++_LIBRARY
     Magick++-7.Q16 Magick++-7.Q8 Magick++-7.Q16HDRI Magick++-7.Q8HDRI
   PATHS
     "/usr/local/lib"
+    "/opt/homebrew/lib"
   DOC "Path to the ImageMagick Magick++ library."
   NO_DEFAULT_PATH
 )
@@ -120,6 +122,7 @@ find_library(ImageMagick_MagickWand_LIBRARY
     MagickWand-7.Q16 MagickWand-7.Q8 MagickWand-7.Q16HDRI MagickWand-7.Q8HDRI
   PATHS
     "/usr/local/lib"
+    "/opt/homebrew/lib"
   DOC "Path to the ImageMagick MagickWand library."
   NO_DEFAULT_PATH
 )
@@ -134,6 +137,7 @@ find_library(ImageMagick_MagickCore_LIBRARY
     MagickCore-7.Q16 MagickCore-7.Q8 MagickCore-7.Q16HDRI MagickCore-7.Q8HDRI
   PATHS
     "/usr/local/lib"
+    "/opt/homebrew/lib"
   DOC "Path to the ImageMagick MagickCore library."
   NO_DEFAULT_PATH
 )

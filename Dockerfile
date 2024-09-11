@@ -17,7 +17,7 @@ EXPOSE 443
 RUN yum install -y wget libjpeg-turbo-devel libpng-devel libtiff-devel libwebp-devel giflib-devel libxml2-devel gcc g++
 RUN wget https://imagemagick.org/archive/ImageMagick.tar.gz
 RUN tar xvzf ImageMagick.tar.gz
-WORKDIR /home/ec2-user/4u-cdn/ImageMagick-7.1.1-33
+WORKDIR /home/ec2-user/4u-cdn/ImageMagick-7.1.1-38
 RUN ./configure --with-quantum-depth=16 --enable-hdri
 RUN make
 RUN make install
