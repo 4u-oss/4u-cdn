@@ -9,8 +9,8 @@ RUN yum groupinstall -y "Development Tools"
 RUN yum install -y git
 RUN git clone https://github.com/4u-oss/4u-cdn.git 4u-cdn
 WORKDIR /home/ec2-user/4u-cdn
-COPY ./certificate.pem /home/ec2-user/4u-cdn/certificate.pem
-COPY ./key.pem /home/ec2-user/4u-cdn/key.pem
+COPY certificate.pem certificate.pem
+COPY key.pem key.pem
 EXPOSE 443
 
 # ImageMagick

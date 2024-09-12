@@ -5,6 +5,7 @@
 #include <aws/s3/model/GetObjectRequest.h>
 #include <aws/s3/S3Client.h>
 #include <iostream>
+#include <filesystem>
 
 namespace CDN {
   class Utils {
@@ -29,8 +30,8 @@ namespace CDN {
 
 int main() {
   uWS::SSLApp({
-    .key_file_name = "key.pem",
-    .cert_file_name = "certificate.pem",
+    .key_file_name = "../key.pem",
+    .cert_file_name = "../certificate.pem",
   }).get("/*", [](uWS::HttpResponse<true> *res, uWS::HttpRequest *req) {
     const std::string host = std::string{req->getHeader("host")};
     
@@ -125,7 +126,11 @@ int main() {
     if (listenSocket) {
       std::cout << "CDN has started listening on port 443." << std::endl;
     } else {
-      std::cout << "CDN could not be started." << "\n" << "Make sure you have the correct certificate files (certificate.pem and key.pem)." << std::endl;
+      if (!std::filesystem::exists("certificate.pem") || !std::filesystem::exists("key.pem")) {
+        std::cout << "CDN could not be started." << "\n" << "Make sure you have the correct certificate files (certificate.pem and key.pem)." << std::endl;
+      } else {
+        std::cout << "CDN could not be started." << "\n" << "An unknown error occured." << std::endl;
+      };
     }
   }).run();
 
