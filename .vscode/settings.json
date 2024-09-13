@@ -68,7 +68,9 @@
     "vector": "cpp",
     "ssl.h": "c",
     "bio.h": "c",
-    "err.h": "c"
+    "err.h": "c",
+    "memory": "cpp",
+    "span": "cpp"
   },
   "C_Cpp.default.compilerPath": "/usr/bin/clang++"
 }

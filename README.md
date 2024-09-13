@@ -1,5 +1,5 @@
 # 4u-cdn
-A simple user-content CDN for 4u services
+A simple user-content CDN for 4u services and products.
 
 ## Requirements
 - Docker
@@ -7,8 +7,3 @@ A simple user-content CDN for 4u services
 - AWS S3 Bucket
 - 4gb of memory (or more)
 - An SSL certificate and key
-
-## Build
-```bash
-sudo docker build --tag "4u-cdn" . --memory="4g" --memory-swap="8g"
-```

@@ -34,6 +34,7 @@ int main() {
     .cert_file_name = "../certificate.pem",
   }).get("/*", [](uWS::HttpResponse<true> *res, uWS::HttpRequest *req) {
     const std::string host = std::string{req->getHeader("host")};
+    const std::string path = std::string{req->getUrl()};
     
     int width;
     int height;
@@ -57,7 +58,13 @@ int main() {
 
     Aws::S3::Model::GetObjectRequest s3Req;
     s3Req.SetBucket("4u-cdn");
-    s3Req.SetKey("/" + host.substr(0, host.find_first_of(".")) + std::string{req->getUrl()});
+    if (path.find("/static") == 0) {
+      std::string replacablePath = *&path;
+      const std::string key = "/" + host.substr(0, host.find_first_of(".")) + replacablePath.replace(0, 7, "");
+      s3Req.SetKey(key);
+    } else {
+      s3Req.SetKey("/" + host.substr(0, host.find_first_of(".")) + path);
+    }
 
     Aws::S3::Model::GetObjectOutcome s3Outcome = s3Client.GetObject(s3Req);
 
@@ -66,9 +73,7 @@ int main() {
       const std::string mime = result.GetContentType().c_str();
       Aws::IOStream &body = result.GetBody();
 
-      res->writeHeader("Content-Type", mime);
-
-      if (width > 0 || height > 0 || quality > 0 || format.length() > 0) {
+      if (path.find("/static") != 0 && mime.find("image/") == 0 && (width > 0 || height > 0 || quality > 0 || format.length() > 0)) {
         // Convert body to a vector of unsigned chars
         std::istreambuf_iterator<char> begin(body), end;
         std::vector<unsigned char> bodyData(begin, end);
@@ -107,6 +112,7 @@ int main() {
 
         res->end(imgStr);
       } else {
+        res->writeHeader("Content-Type", mime);
         // Convert body to a string
         std::stringstream ss;
         ss << body.rdbuf();
@@ -126,7 +132,7 @@ int main() {
     if (listenSocket) {
       std::cout << "CDN has started listening on port 443." << std::endl;
     } else {
-      if (!std::filesystem::exists("certificate.pem") || !std::filesystem::exists("key.pem")) {
+      if (!std::filesystem::exists("../certificate.pem") || !std::filesystem::exists("../key.pem")) {
         std::cout << "CDN could not be started." << "\n" << "Make sure you have the correct certificate files (certificate.pem and key.pem)." << std::endl;
       } else {
         std::cout << "CDN could not be started." << "\n" << "An unknown error occured." << std::endl;
