@@ -32,6 +32,8 @@ int main() {
   uWS::SSLApp({
     .key_file_name = "../key.pem",
     .cert_file_name = "../certificate.pem",
+  }).get("/online", [](uWS::HttpResponse<true> *res, uWS::HttpRequest *req) {
+    res->writeStatus("200 OK")->writeHeader("Content-Type", "application/json")->end("true");
   }).get("/*", [](uWS::HttpResponse<true> *res, uWS::HttpRequest *req) {
     const std::string host = std::string{req->getHeader("host")};
     const std::string path = std::string{req->getUrl()};
